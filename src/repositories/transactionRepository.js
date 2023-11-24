@@ -4,4 +4,11 @@ async function create(data) {
     return TransactionSchema.create(data);
 };
 
-export default { create };
+async function findAllByUser(id) {
+    console.log("Entrou aqui Repository");
+    const retorno = await TransactionSchema.find({userId: id});
+    console.log("RETORNO: ",retorno);
+    return retorno;
+};
+
+export default { create, findAllByUser };
