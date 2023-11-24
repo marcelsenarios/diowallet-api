@@ -21,6 +21,17 @@ async function signin(req, res) {
     } catch (error) {
         return res.status(401).send(error.message);
     }
-}
+};
 
-export default { signup, signin };
+async function userLogged(req, res) {
+    const {_id: id} = res.locals.user;
+
+    try {
+        const user = await authService.userLogged(id);
+        return res.send(user);
+    } catch (error) {
+        return res.status(401).send(error.message);
+    }
+};
+
+export default { signup, signin, userLogged };
